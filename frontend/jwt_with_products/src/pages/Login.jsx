@@ -1,14 +1,25 @@
 import { useState } from "react";
 import "./Login.css";
+import axios from "axios";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // 💡 Add your login / authentication logic here
         console.log("Form submitted:", { email, password });
+        try {
+            const response = await axios.post("http://localhost:3000/users/login", {
+                email,
+                password,
+            });
+            console.log("Login successful: ", response.data);
+            alert("Login Successful!");
+        } catch (error) {
+            console.log("Login Error: ", error);
+        }
     };
 
     return (
