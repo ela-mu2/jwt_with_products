@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom"; // ✅ 改成 react-router-dom
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Products from "./pages/Products";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route path="/products" element={<Products />} />
             </Routes>
         </BrowserRouter>
