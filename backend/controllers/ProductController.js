@@ -13,5 +13,11 @@ exports.getProductById = async (req, res) => {
 exports.addNewProduct = async (req, res) => {
     const newProduct = new Product(req.body);
     await newProduct.save();
-    console.log(newProduct);
+    res.json(newProduct);
+};
+
+exports.putEditedProduct = async (req, res) => {
+    const { id } = req.params;
+    const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    res.json(updatedProduct);
 };

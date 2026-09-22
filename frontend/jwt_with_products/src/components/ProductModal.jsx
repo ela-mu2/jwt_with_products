@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../utils/api";
 
-export const ProductModal = ({ isOpen, onClose, editingProduct = null }) => {
+export const ProductModal = ({ isOpen, onClose, onSave, editingProduct = null }) => {
     const categories = ["Electronics", "Clothing", "Food", "Books", "Sports", "Accessories"];
 
     const initialFormState = {
@@ -73,7 +73,7 @@ export const ProductModal = ({ isOpen, onClose, editingProduct = null }) => {
             price: parseFloat(formData.price),
         };
 
-        saveProduct(payload);
+        onSave(payload);
         onClose();
     };
 
