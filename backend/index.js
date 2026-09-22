@@ -16,7 +16,7 @@ const corsHandler = cors({
 app.use(corsHandler);
 
 mongoose
-    .connect("mongodb://localhost:27017/b18-jwt-products")
+    .connect("mongodb://localhost:27017/jwt_with_products")
     .then(() => {
         console.log("MongoDB Connected");
     })
