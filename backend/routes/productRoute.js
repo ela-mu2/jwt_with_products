@@ -11,6 +11,6 @@ router.get("/:id", auth.authenticate, productController.getProductById);
 
 router.post("/", auth.authenticate, productController.addNewProduct);
 
-router.put("/", auth.authenticate, productController.putEditedProduct);
+router.patch("/:id", auth.authenticate, productController.putEditedProduct);
 
 module.exports = router;
