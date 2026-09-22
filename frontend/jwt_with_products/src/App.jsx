@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // ✅ 改成 react-router-dom
+import { BrowserRouter, Routes, Route } from "react-router";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
 import Products from "./pages/Products";
+import Register from "./pages/Register";
 
 function App() {
     return (
