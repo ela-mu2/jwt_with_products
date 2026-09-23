@@ -16,8 +16,8 @@ exports.addNewProduct = async (req, res) => {
     res.json(newProduct);
 };
 
-exports.putEditedProduct = async (req, res) => {
+exports.updateProduct = async (req, res) => {
     const { id } = req.params;
-    const updatedProduct = await Product.findByIdAndUpdate(id, req.body, { new: true });
-    res.json(updatedProduct);
+    const editedProduct = await Product.findByIdAndUpdate({ _id: id }, req.body, { new: true });
+    res.json(editedProduct);
 };
