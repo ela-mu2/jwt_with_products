@@ -4,7 +4,6 @@ import ProductCard from "../components/ProductCard";
 import { useNavigate } from "react-router";
 import ProductModal from "../components/ProductModal";
 import api from "../utils/api";
-import { getProductByCategory } from "../../../../../e-commerce/backend/controllers/ProductsController";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
@@ -86,16 +85,18 @@ export default function Products() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await api.delete(`/products/${currentProduct._id}`, {
+            const response = await api.delete(`/products/${id}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
             });
-            console.log(response.data);
-            const remainingProducts = products.filter((product) => {
-                product._id !== id;
-            });
-            setProducts(remainingProducts);
+            // console.log(response.data);
+            if (response.status == 204) {
+                const remainingProducts = products.filter((product) => {
+                    return product._id != id;
+                });
+                setProducts(remainingProducts);
+            }
         } catch (error) {
             console.log(error);
             alert("Failed to delete product. Please check your connection.");
@@ -133,12 +134,7 @@ export default function Products() {
                 <main className="p-6 flex-1">
                     <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {products.map((product) => (
-                            <ProductCard
-                                key={product._id}
-                                product={product}
-                                onEdit={handleOpenEditForm}
-                                // onDelete={onDeleteProduct}
-                            />
+                            <ProductCard key={product._id} product={product} onEdit={handleOpenEditForm} onDelete={handleDelete} />
                         ))}
                     </div>
                 </main>
