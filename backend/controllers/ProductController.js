@@ -18,6 +18,12 @@ exports.addNewProduct = async (req, res) => {
 
 exports.updateProduct = async (req, res) => {
     const { id } = req.params;
-    const editedProduct = await Product.findByIdAndUpdate({ _id: id }, req.body, { new: true });
+    const editedProduct = await Product.findOneAndUpdate({ _id: id }, req.body, { new: true });
     res.json(editedProduct);
+};
+
+exports.deleteProduct = async (req, res) => {
+    const { id } = req.params;
+    await Product.findOneAndDelete({ _id: id });
+    res.status(204).json();
 };
